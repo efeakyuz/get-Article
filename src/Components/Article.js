@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
 import { Button, Card, CardText, CardTitle, Col, Row } from "reactstrap";
 import { parseString } from "xml2js";
 
@@ -7,7 +6,6 @@ function ArticleList() {
   const [article, setArticle] = useState([]);
 
   const getArticle = useCallback(() => {
-
     /* axios({
         method: "GET",
         url: `https://www.wired.com/feed/category/culture/latest/rss`,
@@ -31,52 +29,45 @@ function ArticleList() {
       .then((response) => response.text())
       .then((responseText) => {
         parseString(responseText, function (err, result) {
-          console.log(result);
-          return result;
+          console.log(result.rss.channel[0].item);
+          setArticle(result.rss.channel[0].item);
+          return result.rss.channel[0].item;
         });
-        setArticle({ datasource: "result" });
       })
       .catch((error) => {
         console.log("Error fetching the feed: ", error);
-      })
-
-    }, []);
-
+      });
+  }, []);
 
   useEffect(() => {
     getArticle();
   }, [getArticle]);
 
- /*  let array = article.map((singleArticle) => {
-    console.log(singleArticle.item);
-      return(array)
-      
-  }); */
-
-  /* const renderArticle =
-    article.map((singleArticle) => {
+  const renderArticle =
+    article &&
+    article.slice(0,5).map((singleArticle, index) => {
       return (
-        <Row>
-          <Col sm="6">
-            <Card body>
-       <CardTitle>{singleArticle.rss.$.version}</CardTitle>
-              <CardText>
-                With supporting text below as a natural lead-in to additional
-                content.
-              </CardText>
-              <Button>Go somewhere</Button>
+        <Row key={index}>
+          <Col sm="12">
+            <Card
+              body
+              style={{
+                marginTop: "2rem",
+                marginRight: "1",
+                marginLeft: "4rem",
+                width: 310,
+              }}
+            >
+              <CardTitle>{singleArticle.title}</CardTitle>
+              <CardText>{singleArticle.description}</CardText>
+              <Button href={singleArticle.link}>Link</Button>
             </Card>
           </Col>
         </Row>
       );
-    }); */
+    });
 
-  return (
-    <Row>
-      <h1>Buraya</h1>
-      {/* {renderArticle} */}
-    </Row>
-  );
+  return <Row>{renderArticle}</Row>;
 }
 
 export default ArticleList;

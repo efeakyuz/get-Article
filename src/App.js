@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import Article from './Components/Article';
 import Nav from './Components/Nav';
+import Detail from './Components/Detail'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Container style={{marginTop:"2rem"}}>
         <Switch>
           <Route path="/" exact component={Article}/>
+          <Route path="/detail" exact component={Detail}/>
         </Switch>
       </Container>
     </div>

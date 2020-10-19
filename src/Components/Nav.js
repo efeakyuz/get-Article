@@ -16,10 +16,10 @@ const Navi = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">Wired</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <NavbarText className="m-auto">Simple Text</NavbarText>
+          <NavbarText className="m-auto">Culture</NavbarText>
         </Collapse>
       </Navbar>
     </div>
