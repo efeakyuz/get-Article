@@ -15,7 +15,7 @@ function Detail() {
   const wordCounter = useCallback(() => {
     var wordPool = {};
     var wordArray = story.text.toLowerCase().split(/\W+/);
-    wordArray = wordArray.replace(/\b(to|or|is|a|the|for|)\b/g, '').trim();
+    /* wordArray = wordArray.replace(/\b(to|or|is|a|the|for|)\b/g, '').trim(); */
     console.log(wordArray);
     console.log(wordPool);
 
