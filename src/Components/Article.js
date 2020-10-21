@@ -6,23 +6,6 @@ function ArticleList() {
   const [article, setArticle] = useState([]);
 
   const getArticle = useCallback(() => {
-    /* axios({
-        method: "GET",
-        url: `https://www.wired.com/feed/category/culture/latest/rss`,
-      }).then((response) => response.text())
-      .then((responseText) => {
-        parseString(responseText, function (err, result) {
-            console.log(result.rss.channel);
-            return result;
-        });
-        setArticle({ datasource: "result" });
-    })
-    .catch((error) => {
-        console.log("Error fetching the feed: ", error);
-    })
-
-
-    }, []); */
 
     let url = "https://www.wired.com/feed/category/culture/latest/rss";
     fetch(url)
@@ -46,6 +29,7 @@ function ArticleList() {
   const renderArticle =
     article &&
     article.slice(0,5).map((singleArticle, index) => {
+        
       return (
         <Row key={index}>
           <Col sm="12">
